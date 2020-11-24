@@ -22,7 +22,8 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+          with font-awesome or any other icon font library -->
+          @if (auth()->user()->level == "karyawan")
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-clock"></i>
@@ -34,41 +35,51 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="fas fa-sign-in-alt"></i>
+                <i class="fas fa-sign-in-alt"></i>
                   <p>Presensi Masuk</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="fas fa-sign-out-alt"></i>
+                <i class="fas fa-sign-out-alt"></i>
                   <p>Presensi Keluar</p>
                 </a>
               </li>
             </ul>
           </li>
-
+          @endif
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <i class="nav-icon fa fa-address-book"></i>
               <p>
                 Laporan
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
+              @if (auth()->user()->level == "karyawan")
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-address-book"></i>
-                  <p>Presensi Karyawan</p>
+                  <i class="fa fa-user nav-icon"></i>
+                  <p>Presensi Per karyawan</p>
                 </a>
               </li>
+              @endif
+              @if (auth()->user()->level == "admin")
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-address-card"></i>
+                  <i class="fa fa-users nav-icon"></i>
                   <p>Presensi Keseluruhan</p>
                 </a>
               </li>
+              @endif
             </ul>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('logout') }}" class="nav-link">
+              <i class="fas fa-th nav-icon"></i>
+               <p>Logout</p>
+            </a>
           </li>
         </ul>
       </nav>
